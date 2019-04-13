@@ -1,12 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import "./styles/BadgeDetails.css";
 import confLogo from "../images/platziconf-logo.svg";
 import Badge from "../components/Badge";
+import DeleteBadgeModal from "../components/DeleteBadgeModal";
 import { Link } from "react-router-dom";
 
-const BadgeDetails = ({ badge }) => (
+const BadgeDetails = ({
+  badge,
+  onCloseModal,
+  onOpenModal,
+  modalIsOpen,
+  onDeleteBadge
+}) => (
   <div>
     <div className="BadgeDetails__hero">
       <div className="container">
@@ -49,13 +55,14 @@ const BadgeDetails = ({ badge }) => (
             </div>
 
             <div>
-              {/* <button onClick={this.openModal} className="btn btn-danger">
+              <button onClick={onOpenModal} className="btn btn-danger">
                 Delete
-              </button> */}
-              {ReactDOM.createPortal(
-                <h1>Estoy fuera de todo</h1>,
-                document.getElementById("modal")
-              )}
+              </button>
+              <DeleteBadgeModal
+                isOpen={modalIsOpen}
+                onClose={onCloseModal}
+                onDeleteBadge={onDeleteBadge}
+              />
             </div>
           </div>
         </div>
