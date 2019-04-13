@@ -15,10 +15,10 @@ export default class BadgeForm extends React.Component {
   // };
 
   render() {
-    const { formValues: form, onChange, onSubmit, error } = this.props;
+    const { formValues: form, onChange, onSubmit, error, title } = this.props;
     return (
       <div>
-        <h1>New Attendant</h1>
+        <h1>{title}</h1>
 
         <form onSubmit={onSubmit}>
           <div className="form-group">

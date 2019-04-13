@@ -4,11 +4,11 @@ import BadgeForm from "../components/BadgeForm";
 import PageLoading from "../components/PageLoading";
 
 import header from "../images/badge-header.svg";
-import "./styles/BadgeNew.css";
+import "./styles/BadgeEdit.css";
 import api from "./../api";
 import md5 from "md5";
 
-export default class BadgeNew extends React.Component {
+export default class BadgeEdit extends React.Component {
   state = {
     form: {
       firstName: "",
@@ -18,8 +18,24 @@ export default class BadgeNew extends React.Component {
       twitter: "",
       avatarUrl: ""
     },
-    loading: false,
+    loading: true,
     error: null
+  };
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = async () => {
+    this.setState({ loading: true, error: null });
+
+    try {
+      const data = await api.badges.read(this.props.match.params.badgeId);
+
+      this.setState({ loading: false, form: data });
+    } catch (error) {
+      this.setState({ loading: false, error });
+    }
   };
 
   handleChange = ({ target: { value, name } }) => {
@@ -40,7 +56,7 @@ export default class BadgeNew extends React.Component {
       form.avatarUrl = `https://s.gravatar.com/avatar/${md5(
         form.email
       )}?s=80%22`;
-      await api.badges.create(form);
+      await api.badges.update(this.props.match.params.badgeId, form);
       this.setState({ loading: false });
       this.props.history.push("/badges");
     } catch (error) {
@@ -57,9 +73,9 @@ export default class BadgeNew extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="BadgeNew__hero">
+        <div className="BadgeEdit__hero">
           <img
-            className="BadgeNew__hero-image img-fluid"
+            className="BadgeEdit__hero-image img-fluid"
             src={header}
             alt="Logo"
           />
@@ -82,7 +98,7 @@ export default class BadgeNew extends React.Component {
 
             <div className="col">
               <BadgeForm
-                title="New Attendant"
+                title="Edit Attendant"
                 onChange={this.handleChange}
                 onSubmit={this.handleSubmit}
                 formValues={form}
