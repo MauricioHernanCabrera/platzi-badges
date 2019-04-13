@@ -4,21 +4,22 @@ import "./styles/BadgesList.css";
 
 class BadgesListItem extends React.Component {
   render() {
+    const { badge } = this.props;
     return (
       <div className="BadgesListItem">
         <img
           className="BadgesListItem__avatar"
-          src={this.props.badge.avatarUrl}
-          alt={`${this.props.badge.firstName} ${this.props.badge.lastName}`}
+          src={badge.avatarUrl}
+          alt={`${badge.firstName} ${badge.lastName}`}
         />
 
         <div>
           <strong>
-            {this.props.badge.firstName} {this.props.badge.lastName}
+            {badge.firstName} {badge.lastName}
           </strong>
-          <br />@{this.props.badge.twitter}
+          <br />@{badge.twitter}
           <br />
-          {this.props.badge.jobTitle}
+          {badge.jobTitle}
         </div>
       </div>
     );
@@ -27,10 +28,11 @@ class BadgesListItem extends React.Component {
 
 class BadgesList extends React.Component {
   render() {
+    const { badges } = this.props;
     return (
       <div className="BadgesList">
         <ul className="list-unstyled">
-          {this.props.badges.map(badge => {
+          {badges.map(badge => {
             return (
               <li key={badge.id}>
                 <BadgesListItem badge={badge} />
