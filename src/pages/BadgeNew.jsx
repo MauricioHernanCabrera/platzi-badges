@@ -1,8 +1,10 @@
 import React from "react";
-import header from "../images/badge-header.svg";
-import "./styles/BadgeNew.css";
 import Badge from "../components/Badge";
 import BadgeForm from "../components/BadgeForm";
+
+import header from "../images/badge-header.svg";
+import "./styles/BadgeNew.css";
+import api from "./../api";
 
 export default class BadgeNew extends React.Component {
   state = {
@@ -12,12 +14,12 @@ export default class BadgeNew extends React.Component {
       email: "",
       jobTitle: "Designer",
       twitter: ""
-    }
+    },
+    loading: false,
+    error: null
   };
 
   handleChange = ({ target: { value, name } }) => {
-    console.log("Entro");
-    console.log(value, name);
     this.setState({
       form: {
         ...this.state.form,
@@ -26,12 +28,28 @@ export default class BadgeNew extends React.Component {
     });
   };
 
+  handleSubmit = async e => {
+    e.preventDefault();
+
+    try {
+      const { form } = this.state;
+      await api.badges.create(form);
+      this.setState({ loading: false });
+    } catch (error) {
+      this.setState({ loading: false, error });
+    }
+  };
+
   render() {
     const { form } = this.state;
     return (
       <React.Fragment>
         <div className="BadgeNew__hero">
-          <img className="img-fluid" src={header} alt="Logo" />
+          <img
+            className="BadgeNew__hero-image img-fluid"
+            src={header}
+            alt="Logo"
+          />
         </div>
 
         <div className="container">
@@ -48,7 +66,11 @@ export default class BadgeNew extends React.Component {
             </div>
 
             <div className="col">
-              <BadgeForm onChange={this.handleChange} formValues={form} />
+              <BadgeForm
+                onChange={this.handleChange}
+                onSubmit={this.handleSubmit}
+                formValues={form}
+              />
             </div>
           </div>
         </div>

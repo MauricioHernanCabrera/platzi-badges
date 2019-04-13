@@ -8,19 +8,19 @@ export default class BadgeForm extends React.Component {
     });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log("Button was clicked");
-    console.log(this.state);
-  };
+  // handleSubmit = event => {
+  //   event.preventDefault();
+  //   console.log("Button was clicked");
+  //   console.log(this.state);
+  // };
 
   render() {
-    const { formValues: form, onChange } = this.props;
+    const { formValues: form, onChange, onSubmit } = this.props;
     return (
       <div>
         <h1>New Attendant</h1>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={onSubmit}>
           <div className="form-group">
             <label>First name</label>
             <input
