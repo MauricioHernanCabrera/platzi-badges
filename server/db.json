@@ -10,12 +10,22 @@
       "avatarUrl": "https://www.gravatar.com/avatar/f63a9c45aca0e7e7de0782a6b1dff40b?d=identicon"
     },
     {
-      "firstName": "Hernan",
-      "lastName": "Cabrera",
+      "firstName": "a",
+      "lastName": "asdas",
       "email": "mauriciohernancabrera@gmail.com",
-      "jobTitle": "Frontend",
-      "twitter": "hernanmc06",
-      "id": "wDM6ZBi"
+      "jobTitle": "Designer",
+      "twitter": "asdasd",
+      "avatarUrl": "https://s.gravatar.com/avatar/0e9e8c3f103ceea5fb036373568f776e?s=80%22",
+      "id": "Xj-NdnH"
+    },
+    {
+      "firstName": "asd",
+      "lastName": "asdas",
+      "email": "mauriciohernancabrera@gmail.com",
+      "jobTitle": "Desaigner",
+      "twitter": "asdasd",
+      "avatarUrl": "https://s.gravatar.com/avatar/0e9e8c3f103ceea5fb036373568f776e?s=80%22",
+      "id": "pOczcJC"
     }
   ]
 }

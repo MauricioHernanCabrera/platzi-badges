@@ -15,7 +15,7 @@ export default class BadgeForm extends React.Component {
   // };
 
   render() {
-    const { formValues: form, onChange, onSubmit } = this.props;
+    const { formValues: form, onChange, onSubmit, error } = this.props;
     return (
       <div>
         <h1>New Attendant</h1>
@@ -76,8 +76,7 @@ export default class BadgeForm extends React.Component {
             />
           </div>
 
-          {/* type="button"
-          onClick={this.handleClick} */}
+          {error && <p className="text-danger">{error.message}</p>}
           <button className="btn btn-primary">Save</button>
         </form>
       </div>

@@ -1,10 +1,12 @@
 import React from "react";
 import Badge from "../components/Badge";
 import BadgeForm from "../components/BadgeForm";
+import PageLoading from "../components/PageLoading";
 
 import header from "../images/badge-header.svg";
 import "./styles/BadgeNew.css";
 import api from "./../api";
+import md5 from "md5";
 
 export default class BadgeNew extends React.Component {
   state = {
@@ -13,7 +15,8 @@ export default class BadgeNew extends React.Component {
       lastName: "",
       email: "",
       jobTitle: "Designer",
-      twitter: ""
+      twitter: "",
+      avatarUrl: ""
     },
     loading: false,
     error: null
@@ -30,18 +33,28 @@ export default class BadgeNew extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+    this.setState({ loading: true, error: null });
 
     try {
       const { form } = this.state;
+      form.avatarUrl = `https://s.gravatar.com/avatar/${md5(
+        form.email
+      )}?s=80%22`;
       await api.badges.create(form);
       this.setState({ loading: false });
+      this.props.history.push("/badges");
     } catch (error) {
       this.setState({ loading: false, error });
     }
   };
 
   render() {
-    const { form } = this.state;
+    const { form, loading, error } = this.state;
+
+    if (loading) {
+      return <PageLoading />;
+    }
+
     return (
       <React.Fragment>
         <div className="BadgeNew__hero">
@@ -61,7 +74,9 @@ export default class BadgeNew extends React.Component {
                 jobTitle={form.jobTitle}
                 twitter={form.twitter}
                 email={form.email}
-                avatarUrl="https://www.gravatar.com/avatar?id=identicon"
+                avatarUrl={`https://s.gravatar.com/avatar/${md5(
+                  form.email
+                )}?s=80%22`}
               />
             </div>
 
@@ -70,6 +85,7 @@ export default class BadgeNew extends React.Component {
                 onChange={this.handleChange}
                 onSubmit={this.handleSubmit}
                 formValues={form}
+                error={error}
               />
             </div>
           </div>
