@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
 import "./styles/BadgeDetails.css";
 import confLogo from "../images/platziconf-logo.svg";
@@ -48,7 +49,13 @@ const BadgeDetails = ({ badge }) => (
             </div>
 
             <div>
-              <button className="btn btn-danger">Delete</button>
+              {/* <button onClick={this.openModal} className="btn btn-danger">
+                Delete
+              </button> */}
+              {ReactDOM.createPortal(
+                <h1>Estoy fuera de todo</h1>,
+                document.getElementById("modal")
+              )}
             </div>
           </div>
         </div>
