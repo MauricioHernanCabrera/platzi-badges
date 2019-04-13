@@ -8,7 +8,7 @@ import Badges from "./pages/Badges";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
 
-export default () => (
+const App = () => (
   <BrowserRouter>
     <Layout>
       <Switch>
@@ -21,3 +21,5 @@ export default () => (
     </Layout>
   </BrowserRouter>
 );
+
+export default App;

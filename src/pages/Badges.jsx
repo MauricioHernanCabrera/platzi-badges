@@ -62,11 +62,7 @@ export default class Badges extends React.Component {
             </Link>
           </div>
 
-          <div className="Badges__list">
-            <div className="Badges__container">
-              <BadgesList badges={data} />
-            </div>
-          </div>
+          <BadgesList badges={data} />
         </div>
       </React.Fragment>
     );
