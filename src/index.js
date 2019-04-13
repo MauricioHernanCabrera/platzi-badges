@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Badge from "./components/Badge";
-
+import "./global.css";
+import "bootstrap/dist/css/bootstrap.css";
 // const element = React.createElement(
 //   "div",
 //   {},
