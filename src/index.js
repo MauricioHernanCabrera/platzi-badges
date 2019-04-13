@@ -11,4 +11,13 @@ import "bootstrap/dist/css/bootstrap.css";
 // );
 const container = document.getElementById("app");
 
-ReactDOM.render(<Badge />, container);
+ReactDOM.render(
+  <Badge
+    firstName="Lilly"
+    lastName="Kaufman"
+    jobTitle="Frontend engineer"
+    twitter="sparragus"
+    avatarUrl="https://www.gravatar.com/avatar?id=identicon"
+  />,
+  container
+);
